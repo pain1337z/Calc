@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İlaç Dozu Hesaplayıcı</title>
+</head>
+<body>
+    <h1>İlaç Dozu Hesaplayıcı</h1>
+    <form method="post">
+        <label for="weight">Kilo:</label>
+        <input type="text" id="weight" name="weight" required><br><br>
+
+        <label for="weight_unit">Kilo Birimi:</label>
+        <select id="weight_unit" name="weight_unit">
+            <option value="kg">kg</option>
+            <option value="gram">gram</option>
+        </select><br><br>
+
+        <label for="dose_per_kg">Kilogram Başına Doz (mg/kg):</label>
+        <input type="text" id="dose_per_kg" name="dose_per_kg" required><br><br>
+
+        <label for="concentration_mg">Konsantrasyon (mg):</label>
+        <input type="text" id="concentration_mg" name="concentration_mg" required><br><br>
+
+        <label for="concentration_ml">Konsantrasyon (ml):</label>
+        <input type="text" id="concentration_ml" name="concentration_ml" required><br><br>
+
+        <input type="submit" value="Hesapla">
+    </form>
+
+    {% if weight_based_dose is not none and volume is not none %}
+        <h2>Hesaplanan Doz:</h2>
+        <p>Ağırlık bazlı doz: {{ weight_based_dose }} mg</p>
+        <p>Çekilmesi gereken hacim: {{ volume }} ml</p>
+    {% endif %}
+
+    <footer>
+        <p>Bu hesaplayıcı LCA tarafından yapılmıştır.</p>
+    </footer>
+</body>
+</html>
