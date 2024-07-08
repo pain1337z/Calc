@@ -3,40 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İlaç Dozu Hesaplayıcı</title>
+    <title>İlaç Hesaplama</title>
+    <script>
+        function calculateDoseAndVolume() {
+            
+            var weight = parseFloat(document.getElementById('weight').value);
+            var weightUnit = document.getElementById('weight_unit').value;
+            var dosePerKg = parseFloat(document.getElementById('dose_per_kg').value);
+            var concentrationMg = parseFloat(document.getElementById('concentration_mg').value);
+            var concentrationMl = parseFloat(document.getElementById('concentration_ml').value);
+
+            // Ağırlık birimini gram ise kilograma çevir
+            if (weightUnit === 'gram') {
+                weight /= 1000.0;
+            }
+
+            
+            var weightBasedDose = weight * dosePerKg;
+
+            
+            var concentration = concentrationMg / concentrationMl;
+
+           
+            var volume = weightBasedDose / concentration;
+
+            
+            document.getElementById('result_dose').textContent = 'Hesaplanan Doz: ' + weightBasedDose.toFixed(2) + ' mg';
+            document.getElementById('result_volume').textContent = 'Hesaplanan Hacim: ' + volume.toFixed(2) + ' ml';
+        }
+    </script>
 </head>
 <body>
-    <h1>İlaç Dozu Hesaplayıcı</h1>
-    <form method="post">
-        <label for="weight">Kilo:</label>
-        <input type="text" id="weight" name="weight" required><br><br>
-
-        <label for="weight_unit">Kilo Birimi:</label>
+    <h1>İlaç Hesaplama Formu</h1>
+    <form>
+        <label for="weight">Ağırlık:</label>
+        <input type="number" id="weight" name="weight" required>
         <select id="weight_unit" name="weight_unit">
             <option value="kg">kg</option>
             <option value="gram">gram</option>
         </select><br><br>
 
-        <label for="dose_per_kg">Kilogram Başına Doz (mg/kg):</label>
-        <input type="text" id="dose_per_kg" name="dose_per_kg" required><br><br>
+        <label for="dose_per_kg">Kilogram Başına Doz:</label>
+        <input type="number" id="dose_per_kg" name="dose_per_kg" required> mg/kg<br><br>
 
         <label for="concentration_mg">Konsantrasyon (mg):</label>
-        <input type="text" id="concentration_mg" name="concentration_mg" required><br><br>
+        <input type="number" id="concentration_mg" name="concentration_mg" required> mg<br><br>
 
         <label for="concentration_ml">Konsantrasyon (ml):</label>
-        <input type="text" id="concentration_ml" name="concentration_ml" required><br><br>
+        <input type="number" id="concentration_ml" name="concentration_ml" required> ml<br><br>
 
-        <input type="submit" value="Hesapla">
+        <button type="button" onclick="calculateDoseAndVolume()">Hesapla</button>
     </form>
 
-    {% if weight_based_dose is not none and volume is not none %}
-        <h2>Hesaplanan Doz:</h2>
-        <p>Ağırlık bazlı doz: {{ weight_based_dose }} mg</p>
-        <p>Çekilmesi gereken hacim: {{ volume }} ml</p>
-    {% endif %}
-
-    <footer>
-        <p>Bu hesaplayıcı LCA tarafından yapılmıştır.</p>
-    </footer>
+    <div id="results">
+        <p id="result_dose"></p>
+        <p id="result_volume"></p>
+    </div>
 </body>
 </html>
