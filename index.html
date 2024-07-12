@@ -12,7 +12,6 @@
             margin: 0;
             padding: 20px;
         }
-
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -21,17 +20,14 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
         h1 {
             text-align: center;
             color: #333;
         }
-
         .tab {
             overflow: hidden;
             border-bottom: 1px solid #ccc;
         }
-
         .tab button {
             background-color: inherit;
             border: none;
@@ -41,38 +37,31 @@
             transition: 0.3s;
             font-size: 17px;
         }
-
         .tab button:hover {
             background-color: #ddd;
         }
-
         .tab button.active {
             background-color: #ccc;
         }
-
         .tabcontent {
             display: none;
             padding: 20px;
             border: 1px solid #ccc;
             border-top: none;
         }
-
         .letter-section {
             margin-top: 20px;
         }
-
         .letter {
             font-size: 24px;
             color: #666;
             margin-bottom: 10px;
         }
-
         .drug {
             font-size: 18px;
             color: #333;
             margin-bottom: 5px;
         }
-
         .usage {
             font-size: 14px;
             color: #666;
@@ -93,7 +82,6 @@
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.className += " active";
         }
-
         function calculateDoseAndVolume() {
             var weight = parseFloat(document.getElementById('weight').value);
             var weightUnit = document.getElementById('weight_unit').value;
@@ -101,33 +89,28 @@
             var doseUnit = document.getElementById('dose_unit').value;
             var concentrationMg = parseFloat(document.getElementById('concentration_mg').value);
             var concentrationMl = parseFloat(document.getElementById('concentration_ml').value);
-
             if (weightUnit === 'gram') {
                 weight /= 1000.0;
             }
-
             if (doseUnit === 'mg') {
                 dosePerKg /= 1000.0;  // Convert mg to g if dose unit is mg
             }
-
             var weightBasedDose = weight * dosePerKg;
             var concentration = concentrationMg / concentrationMl;
             var volume = weightBasedDose / concentration;
-
             document.getElementById('result_dose').textContent = 'Hesaplanan Doz: ' + weightBasedDose.toFixed(2) + ' mg';
             document.getElementById('result_volume').textContent = 'Hesaplanan Hacim: ' + volume.toFixed(2) + ' ml';
         }
     </script>
 </head>
 <body>
-
     <div class="container">
         <h1>Veterinerlik İlaç Sözlüğü ve Hesaplama</h1>
 
         <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'Hesaplama')">İlaç Hesaplama</button>
             <button class="tablinks" onclick="openTab(event, 'Hesaplama')">Dozaj Hesaplama</button>
             <button class="tablinks" onclick="openTab(event, 'Sozluk')">İlaç Sözlüğü</button>
-            <button class="tablinks" onclick="openTab(event, 'differential')">Faydalı Ayırıcı Tanı Şemaları</button>
         </div>
 
         <div id="Hesaplama" class="tabcontent">
@@ -140,29 +123,23 @@
                     <option value="kg">kg</option>
                     <option value="gram">gram</option>
                 </select><br><br>
-
                 <label for="dose_per_kg">Kilogram Başına Doz:</label>
                 <input type="number" id="dose_per_kg" name="dose_per_kg" required>
                 <select id="dose_unit" name="dose_unit">
                     <option value="mg">mg</option>
                     <option value="g">g</option>
                 </select><br><br>
-
                 <label for="concentration_mg">Konsantrasyon (mg):</label>
                 <input type="number" id="concentration_mg" name="concentration_mg" required> mg<br><br>
-
                 <label for="concentration_ml">Konsantrasyon (ml):</label>
                 <input type="number" id="concentration_ml" name="concentration_ml" required> ml<br><br>
-
                 <button type="button" onclick="calculateDoseAndVolume()">Hesapla</button>
             </form>
-
             <div id="results">
                 <p id="result_dose"></p>
                 <p id="result_volume"></p>
             </div>
         </div>
-
         <div id="Sozluk" class="tabcontent">
             <h2>Veterinerlik İlaç Sözlüğü</h2>
             <div class="letter-section">
@@ -176,7 +153,6 @@
                 <div class="drug">Atropine</div>
                 <div class="usage">Kalp hızını artırmak ve zehirlenmelerde antidot olarak kullanılır.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">B</div>
                 <div class="drug">Baytril (Enrofloxacin)</div>
@@ -188,7 +164,6 @@
                 <div class="drug">Buprenorphine</div>
                 <div class="usage">Ağrı kesici olarak kullanılır. Orta ve şiddetli ağrılarda etkilidir.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">C</div>
                 <div class="drug">Cefalexin</div>
@@ -200,7 +175,6 @@
                 <div class="drug">Clindamycin</div>
                 <div class="usage">Bakteriyel enfeksiyonların tedavisinde kullanılır. Özellikle dental enfeksiyonlarda etkilidir.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">D</div>
                 <div class="drug">Dexamethasone</div>
@@ -212,7 +186,6 @@
                 <div class="drug">Diphenhydramine</div>
                 <div class="usage">Antihistaminik olarak kullanılır. Alerjik reaksiyonların tedavisinde etkilidir.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">E</div>
                 <div class="drug">Enalapril</div>
@@ -220,7 +193,6 @@
                 <div class="drug">Epinephrine</div>
                 <div class="usage">Acil durumlarda kullanılır. Anafilaksi ve kalp durmasında etkilidir.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">F</div>
                 <div class="drug">Fentanyl</div>
@@ -228,7 +200,6 @@
                 <div class="drug">Furosemide</div>
                 <div class="usage">Diüretik olarak kullanılır. Kalp yetmezliği ve ödem tedavisinde etkilidir.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">G</div>
                 <div class="drug">Gentamicin</div>
@@ -236,7 +207,6 @@
                 <div class="drug">Glucosamine</div>
                 <div class="usage">Osteoartrit tedavisinde kullanılır. Eklemlerin sağlığını destekler.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">H</div>
                 <div class="drug">Hydrocortisone</div>
@@ -244,7 +214,6 @@
                 <div class="drug">Hydromorphone</div>
                 <div class="usage">Şiddetli ağrıların tedavisinde kullanılır.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">I</div>
                 <div class="drug">Ivermectin</div>
@@ -252,7 +221,6 @@
                 <div class="drug">Imidacloprid</div>
                 <div class="usage">Dış parazitlerin tedavisinde kullanılır. Özellikle pire ve bit tedavisinde etkilidir.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">K</div>
                 <div class="drug">Ketamine</div>
@@ -260,7 +228,6 @@
                 <div class="drug">Ketoconazole</div>
                 <div class="usage">Mantar enfeksiyonlarının tedavisinde kullanılır.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">L</div>
                 <div class="drug">Lactulose</div>
@@ -268,7 +235,6 @@
                 <div class="drug">Lidocaine</div>
                 <div class="usage">Lokal anestezik olarak kullanılır. Ayrıca aritmi tedavisinde de etkilidir.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">M</div>
                 <div class="drug">Maropitant</div>
@@ -280,7 +246,6 @@
                 <div class="drug">Morphine</div>
                 <div class="usage">Şiddetli ağrıların tedavisinde kullanılır.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">N</div>
                 <div class="drug">Neomycin</div>
@@ -288,7 +253,6 @@
                 <div class="drug">Nitrofurantoin</div>
                 <div class="usage">Üriner sistem enfeksiyonlarının tedavisinde kullanılır.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">O</div>
                 <div class="drug">Omeprazole</div>
@@ -296,7 +260,6 @@
                 <div class="drug">Oxytetracycline</div>
                 <div class="usage">Bakteriyel enfeksiyonların tedavisinde kullanılır.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">P</div>
                 <div class="drug">Penicillin</div>
@@ -308,7 +271,6 @@
                 <div class="drug">Propranolol</div>
                 <div class="usage">Kalp ritim bozukluklarının tedavisinde kullanılır.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">S</div>
                 <div class="drug">Sulfadimethoxine</div>
@@ -316,7 +278,6 @@
                 <div class="drug">Sucralfate</div>
                 <div class="usage">Mide ve bağırsak ülserlerinin tedavisinde kullanılır. Koruyucu bir tabaka oluşturarak ülserlerin iyileşmesine yardımcı olur.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">T</div>
                 <div class="drug">Tetracycline</div>
@@ -328,107 +289,22 @@
                 <div class="drug">Triamcinolone</div>
                 <div class="usage">Anti-enflamatuar olarak kullanılır. Deri rahatsızlıkları ve alerjik reaksiyonların tedavisinde etkilidir.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">V</div>
                 <div class="drug">Vitamin K1</div>
                 <div class="usage">Kanama bozukluklarının tedavisinde kullanılır. Özellikle warfarin gibi antikoagülanların aşırı dozunda etkilidir.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">X</div>
                 <div class="drug">Xylazine</div>
                 <div class="usage">Sedatif ve analjezik olarak kullanılır. Ayrıca hayvanları sakinleştirmek ve anesteziye hazırlamak için kullanılır.</div>
             </div>
-
             <div class="letter-section">
                 <div class="letter">Z</div>
                 <div class="drug">Zinc Sulfate</div>
                 <div class="usage">Çinko eksikliğinin tedavisinde kullanılır. Ayrıca topikal olarak bazı deri rahatsızlıklarının tedavisinde de etkilidir.</div>
             </div>
         </div>
-    <div id="differential" class="tab-content">
-        <h2>Detaylı Ayırıcı Tanı Şemaları</h2>
-        <table border="1" cellspacing="0" cellpadding="5">
-            <tr>
-                <th>Şema Adı</th>
-                <th>Açıklama</th>
-                <th>Tanı ve Tedavi Protokolü</th>
-            </tr>
-            <tr>
-                <td>1. Gastrointestinal Hastalıklar</td>
-                <td>İshal, kusma, kilo kaybı gibi belirtilerle; enteritis, gastritis, parazit enfestasyonları gibi durumları değerlendirir.</td>
-                <td>
-                    <b>Tanı:</b> Klinik bulgular, dışkı analizi, kan testleri.<br>
-                    <b>Tedavi:</b> Antibiyotikler, probiyotikler, beslenme düzenlemeleri.
-                </td>
-            </tr>
-            <tr>
-                <td>2. Solunum Yolu Hastalıkları</td>
-                <td>Öksürük, nefes darlığı, burun akıntısı gibi semptomlarla; pnömoni, bronşit, solunum yolu enfeksiyonlarına yönelik teşhisleri içerir.</td>
-                <td>
-                    <b>Tanı:</b> Röntgen, kan gazı analizi, bronkoskopi.<br>
-                    <b>Tedavi:</b> Antibiyotikler, anti-inflamatuar ilaçlar, solunum desteği.
-                </td>
-            </tr>
-            <tr>
-                <td>3. Deri ve Mantar Hastalıkları</td>
-                <td>Cilt döküntüleri, kaşıntı, saç dökülmesi gibi belirtilerle; dermatitis, fungal enfeksiyonlar ve alerjik reaksiyonları değerlendirir.</td>
-                <td>
-                    <b>Tanı:</b> Deri kazıntısı, biyopsi, mantar kültürü.<br>
-                    <b>Tedavi:</b> Antifungal kremler, kortikosteroidler, antihistaminikler.
-                </td>
-            </tr>
-            <tr>
-                <td>4. Ürogenital Hastalıklar</td>
-                <td>İdrar yolu enfeksiyonları, üreme organlarıyla ilgili sorunlar gibi belirtilerle; sistit, prostatit, üretral obstrüksiyon gibi durumları içerir.</td>
-                <td>
-                    <b>Tanı:</b> Üriner analiz, ultrason, idrar kültürü.<br>
-                    <b>Tedavi:</b> Antibiyotikler, cerrahi müdahale, idrar asitörleri.
-                </td>
-            </tr>
-            <tr>
-                <td>5. Kardiyovasküler Hastalıklar</td>
-                <td>Nefes darlığı, ödem, yorgunluk gibi semptomlarla; kalp yetmezliği, kardiyomiyopati gibi kardiyovasküler problemleri değerlendirir.</td>
-                <td>
-                    <b>Tanı:</b> EKG, echokardiografi, kan basıncı ölçümü.<br>
-                    <b>Tedavi:</b> Kalp ilaçları, diyet değişiklikleri, egzersiz kısıtlamaları.
-                </td>
-            </tr>
-            <tr>
-                <td>6. Metabolik Hastalıklar</td>
-                <td>İştahsızlık, kilo değişiklikleri, kan değerlerinde anormallikler gibi belirtilerle; diyabet, böbrek hastalıkları, tiroid problemleri gibi metabolik durumları içerir.</td>
-                <td>
-                    <b>Tanı:</b> Kan testleri, idrar analizleri, biyokimyasal profiller.<br>
-                    <b>Tedavi:</b> Diyabet ilaçları, diyet tedavisi, hormon replasmanı.
-                </td>
-            </tr>
-            <tr>
-                <td>7. Nörolojik Hastalıklar</td>
-                <td>Koordinasyon kaybı, davranış değişiklikleri, nörolojik belirtilerle; ensefalit, epilepsi, spinal kord yaralanmaları gibi nörolojik problemleri değerlendirir.</td>
-                <td>
-                    <b>Tanı:</b> MRG, beyin omurilik sıvısı analizi, nörolojik muayene.<br>
-                    <b>Tedavi:</b> Antikonvülsanlar, anti-inflamatuar ilaçlar, rehabilitasyon terapileri.
-                </td>
-            </tr>
-            <tr>
-                <td>8. Travma ve Yaralanmalar</td>
-                <td>Kazalar sonucu oluşan yaralanmalar, kırıklar, morluklar gibi durumları değerlendirir; kafa travması, kemik kırıkları, deri yaraları gibi travma tiplerini içerir.</td>
-                <td>
-                    <b>Tanı:</b> Fizik muayene, röntgen, kan testleri.<br>
-                    <b>Tedavi:</b> Cerrahi müdahale, bandajlama, ağrı yönetimi.
-                </td>
-            </tr>
-            <tr>
-                <td>9. Oftalmolojik Hastalıklar</td>
-                <td>Göz kızarıklığı, akıntı, görme bozuklukları gibi belirtilerle; konjunktivit, glokom, katarakt gibi oftalmolojik problemleri değerlendirir.</td>
-                <td>
-                    <b>Tanı:</b> Göz muayenesi, tonometri, gözyaşı testi.<br>
-                    <b>Tedavi:</b> Göz damlaları, cerrahi müdahale, göz hijyeni.
-                </td>
-            </tr>
-        </table>
-    </div>
     </div>
 </body>
 </html>
