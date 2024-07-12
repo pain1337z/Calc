@@ -1,10 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İlaç Hesaplama</title>
+    <title>Veterinerlik İlaç Sözlüğü ve Hesaplama</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .tab {
+            overflow: hidden;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .tab button {
+            background-color: inherit;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        .letter-section {
+            margin-top: 20px;
+        }
+
+        .letter {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .drug {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .usage {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+    </style>
     <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
         function calculateDoseAndVolume() {
             var weight = parseFloat(document.getElementById('weight').value);
             var weightUnit = document.getElementById('weight_unit').value;
@@ -31,35 +119,232 @@
     </script>
 </head>
 <body>
-    <h1>İlaç Hesaplama Formu</h1>
-    <p style="font-style: italic; font-size: 12px;">DEA-LCA</p>
-    <form>
-        <label for="weight">Ağırlık:</label>
-        <input type="number" id="weight" name="weight" required>
-        <select id="weight_unit" name="weight_unit">
-            <option value="kg">kg</option>
-            <option value="gram">gram</option>
-        </select><br><br>
 
-        <label for="dose_per_kg">Kilogram Başına Doz:</label>
-        <input type="number" id="dose_per_kg" name="dose_per_kg" required>
-        <select id="dose_unit" name="dose_unit">
-            <option value="mg">mg</option>
-            <option value="g">g</option>
-        </select><br><br>
+    <div class="container">
+        <h1>Veterinerlik İlaç Sözlüğü ve Hesaplama</h1>
 
-        <label for="concentration_mg">Konsantrasyon (mg):</label>
-        <input type="number" id="concentration_mg" name="concentration_mg" required> mg<br><br>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'Hesaplama')">İlaç Hesaplama</button>
+            <button class="tablinks" onclick="openTab(event, 'Sozluk')">İlaç Sözlüğü</button>
+        </div>
 
-        <label for="concentration_ml">Konsantrasyon (ml):</label>
-        <input type="number" id="concentration_ml" name="concentration_ml" required> ml<br><br>
+        <div id="Hesaplama" class="tabcontent">
+            <h2>İlaç Hesaplama Formu</h2>
+            <p style="font-style: italic; font-size: 12px;">DEA-LCA</p>
+            <form>
+                <label for="weight">Ağırlık:</label>
+                <input type="number" id="weight" name="weight" required>
+                <select id="weight_unit" name="weight_unit">
+                    <option value="kg">kg</option>
+                    <option value="gram">gram</option>
+                </select><br><br>
 
-        <button type="button" onclick="calculateDoseAndVolume()">Hesapla</button>
-    </form>
+                <label for="dose_per_kg">Kilogram Başına Doz:</label>
+                <input type="number" id="dose_per_kg" name="dose_per_kg" required>
+                <select id="dose_unit" name="dose_unit">
+                    <option value="mg">mg</option>
+                    <option value="g">g</option>
+                </select><br><br>
 
-    <div id="results">
-        <p id="result_dose"></p>
-        <p id="result_volume"></p>
+                <label for="concentration_mg">Konsantrasyon (mg):</label>
+                <input type="number" id="concentration_mg" name="concentration_mg" required> mg<br><br>
+
+                <label for="concentration_ml">Konsantrasyon (ml):</label>
+                <input type="number" id="concentration_ml" name="concentration_ml" required> ml<br><br>
+
+                <button type="button" onclick="calculateDoseAndVolume()">Hesapla</button>
+            </form>
+
+            <div id="results">
+                <p id="result_dose"></p>
+                <p id="result_volume"></p>
+            </div>
+        </div>
+
+        <div id="Sozluk" class="tabcontent">
+            <h2>Veterinerlik İlaç Sözlüğü</h2>
+            <div class="letter-section">
+                <div class="letter">A</div>
+                <div class="drug">Acepromazine</div>
+                <div class="usage">Sedatif olarak kullanılır. Anksiyete ve korkuyu azaltmak için uygulanır.</div>
+                <div class="drug">Amoxicillin</div>
+                <div class="usage">Bakteriyel enfeksiyonların tedavisinde yaygın olarak kullanılır.</div>
+                <div class="drug">Aspirin</div>
+                <div class="usage">Ağrı kesici ve anti-enflamatuar olarak kullanılır. Ancak, dikkatli kullanılmalı ve veteriner önerisi ile verilmelidir.</div>
+                <div class="drug">Atropine</div>
+                <div class="usage">Kalp hızını artırmak ve zehirlenmelerde antidot olarak kullanılır.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">B</div>
+                <div class="drug">Baytril (Enrofloxacin)</div>
+                <div class="usage">Geniş spektrumlu antibiyotik olarak kullanılır. Solunum, sindirim ve üriner sistem enfeksiyonlarında etkilidir.</div>
+                <div class="drug">Benzylpenicillin</div>
+                <div class="usage">Bakteriyel enfeksiyonların tedavisinde kullanılır.</div>
+                <div class="drug">Bromhexine</div>
+                <div class="usage">Solunum yolu hastalıklarında balgam söktürücü olarak kullanılır.</div>
+                <div class="drug">Buprenorphine</div>
+                <div class="usage">Ağrı kesici olarak kullanılır. Orta ve şiddetli ağrılarda etkilidir.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">C</div>
+                <div class="drug">Cefalexin</div>
+                <div class="usage">Bakteriyel enfeksiyonların tedavisinde kullanılır.</div>
+                <div class="drug">Cefovecin</div>
+                <div class="usage">Uzun etkili bir antibiyotiktir. Deri enfeksiyonları ve yumuşak doku enfeksiyonlarında kullanılır.</div>
+                <div class="drug">Ciprofloxacin</div>
+                <div class="usage">Bakteriyel enfeksiyonların tedavisinde kullanılır.</div>
+                <div class="drug">Clindamycin</div>
+                <div class="usage">Bakteriyel enfeksiyonların tedavisinde kullanılır. Özellikle dental enfeksiyonlarda etkilidir.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">D</div>
+                <div class="drug">Dexamethasone</div>
+                <div class="usage">Anti-enflamatuar ve immünosupresan olarak kullanılır. Alerjik reaksiyonlar, astım ve bazı otoimmün hastalıkların tedavisinde etkilidir.</div>
+                <div class="drug">Diazepam</div>
+                <div class="usage">Anksiyolitik, kas gevşetici ve antikonvülsan olarak kullanılır.</div>
+                <div class="drug">Doxycycline</div>
+                <div class="usage">Bakteriyel enfeksiyonların tedavisinde kullanılır.</div>
+                <div class="drug">Diphenhydramine</div>
+                <div class="usage">Antihistaminik olarak kullanılır. Alerjik reaksiyonların tedavisinde etkilidir.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">E</div>
+                <div class="drug">Enalapril</div>
+                <div class="usage">Kalp yetmezliği ve yüksek tansiyonun tedavisinde kullanılır.</div>
+                <div class="drug">Epinephrine</div>
+                <div class="usage">Acil durumlarda kullanılır. Anafilaksi ve kalp durmasında etkilidir.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">F</div>
+                <div class="drug">Fentanyl</div>
+                <div class="usage">Şiddetli ağrıların tedavisinde kullanılır.</div>
+                <div class="drug">Furosemide</div>
+                <div class="usage">Diüretik olarak kullanılır. Kalp yetmezliği ve ödem tedavisinde etkilidir.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">G</div>
+                <div class="drug">Gentamicin</div>
+                <div class="usage">Bakteriyel enfeksiyonların tedavisinde kullanılır.</div>
+                <div class="drug">Glucosamine</div>
+                <div class="usage">Osteoartrit tedavisinde kullanılır. Eklemlerin sağlığını destekler.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">H</div>
+                <div class="drug">Hydrocortisone</div>
+                <div class="usage">Anti-enflamatuar ve immünosupresan olarak kullanılır. Deri rahatsızlıkları ve alerjik reaksiyonların tedavisinde etkilidir.</div>
+                <div class="drug">Hydromorphone</div>
+                <div class="usage">Şiddetli ağrıların tedavisinde kullanılır.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">I</div>
+                <div class="drug">Ivermectin</div>
+                <div class="usage">Paraziter enfeksiyonların tedavisinde kullanılır.</div>
+                <div class="drug">Imidacloprid</div>
+                <div class="usage">Dış parazitlerin tedavisinde kullanılır. Özellikle pire ve bit tedavisinde etkilidir.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">K</div>
+                <div class="drug">Ketamine</div>
+                <div class="usage">Anestezik olarak kullanılır. Kısa süreli cerrahi prosedürlerde etkilidir.</div>
+                <div class="drug">Ketoconazole</div>
+                <div class="usage">Mantar enfeksiyonlarının tedavisinde kullanılır.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">L</div>
+                <div class="drug">Lactulose</div>
+                <div class="usage">Kabızlık tedavisinde kullanılır.</div>
+                <div class="drug">Lidocaine</div>
+                <div class="usage">Lokal anestezik olarak kullanılır. Ayrıca aritmi tedavisinde de etkilidir.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">M</div>
+                <div class="drug">Maropitant</div>
+                <div class="usage">Antiemetik olarak kullanılır. Kusmayı önler ve mide bulantısını azaltır.</div>
+                <div class="drug">Meloxicam</div>
+                <div class="usage">Ağrı kesici ve anti-enflamatuar olarak kullanılır. Osteoartrit ve ameliyat sonrası ağrıların tedavisinde etkilidir.</div>
+                <div class="drug">Metronidazole</div>
+                <div class="usage">Protozoal enfeksiyonların ve bazı bakteriyel enfeksiyonların tedavisinde kullanılır.</div>
+                <div class="drug">Morphine</div>
+                <div class="usage">Şiddetli ağrıların tedavisinde kullanılır.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">N</div>
+                <div class="drug">Neomycin</div>
+                <div class="usage">Bakteriyel enfeksiyonların tedavisinde kullanılır. Genellikle topikal olarak uygulanır.</div>
+                <div class="drug">Nitrofurantoin</div>
+                <div class="usage">Üriner sistem enfeksiyonlarının tedavisinde kullanılır.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">O</div>
+                <div class="drug">Omeprazole</div>
+                <div class="usage">Mide asidini azaltmak için kullanılır. Gastroözofageal reflü hastalığı (GERD) tedavisinde etkilidir.</div>
+                <div class="drug">Oxytetracycline</div>
+                <div class="usage">Bakteriyel enfeksiyonların tedavisinde kullanılır.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">P</div>
+                <div class="drug">Penicillin</div>
+                <div class="usage">Bakteriyel enfeksiyonların tedavisinde kullanılır.</div>
+                <div class="drug">Phenobarbital</div>
+                <div class="usage">Epilepsi ve diğer nöbet bozukluklarının tedavisinde kullanılır.</div>
+                <div class="drug">Prednisolone</div>
+                <div class="usage">Anti-enflamatuar ve immünosupresan olarak kullanılır. Alerjik reaksiyonlar, astım ve bazı otoimmün hastalıkların tedavisinde etkilidir.</div>
+                <div class="drug">Propranolol</div>
+                <div class="usage">Kalp ritim bozukluklarının tedavisinde kullanılır.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">S</div>
+                <div class="drug">Sulfadimethoxine</div>
+                <div class="usage">Bakteriyel ve protozoal enfeksiyonların tedavisinde kullanılır.</div>
+                <div class="drug">Sucralfate</div>
+                <div class="usage">Mide ve bağırsak ülserlerinin tedavisinde kullanılır. Koruyucu bir tabaka oluşturarak ülserlerin iyileşmesine yardımcı olur.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">T</div>
+                <div class="drug">Tetracycline</div>
+                <div class="usage">Bakteriyel enfeksiyonların tedavisinde kullanılır.</div>
+                <div class="drug">Theophylline</div>
+                <div class="usage">Solunum yolu hastalıklarının tedavisinde kullanılır. Bronkodilatör etkisi vardır.</div>
+                <div class="drug">Tramadol</div>
+                <div class="usage">Ağrı kesici olarak kullanılır. Orta ve şiddetli ağrılarda etkilidir.</div>
+                <div class="drug">Triamcinolone</div>
+                <div class="usage">Anti-enflamatuar olarak kullanılır. Deri rahatsızlıkları ve alerjik reaksiyonların tedavisinde etkilidir.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">V</div>
+                <div class="drug">Vitamin K1</div>
+                <div class="usage">Kanama bozukluklarının tedavisinde kullanılır. Özellikle warfarin gibi antikoagülanların aşırı dozunda etkilidir.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">X</div>
+                <div class="drug">Xylazine</div>
+                <div class="usage">Sedatif ve analjezik olarak kullanılır. Ayrıca hayvanları sakinleştirmek ve anesteziye hazırlamak için kullanılır.</div>
+            </div>
+
+            <div class="letter-section">
+                <div class="letter">Z</div>
+                <div class="drug">Zinc Sulfate</div>
+                <div class="usage">Çinko eksikliğinin tedavisinde kullanılır. Ayrıca topikal olarak bazı deri rahatsızlıklarının tedavisinde de etkilidir.</div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
