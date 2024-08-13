@@ -92,24 +92,23 @@
             evt.currentTarget.className += " active";
         }
         function calculateDoseAndVolume() {
-            var weight = parseFloat(document.getElementById('weight').value);
-            var weightUnit = document.getElementById('weight_unit').value;
-            var dosePerKg = parseFloat(document.getElementById('dose_per_kg').value);
-            var doseUnit = document.getElementById('dose_unit').value;
-            var concentrationMg = parseFloat(document.getElementById('concentration_mg').value);
-            var concentrationMl = parseFloat(document.getElementById('concentration_ml').value);
-            if (weightUnit === 'gram') {
-                weight /= 1000.0;
-            }
-            if (doseUnit === 'mg') {
-                dosePerKg /= 1000.0;  // Convert mg to g if dose unit is mg
-            }
-            var weightBasedDose = weight * dosePerKg;
-            var concentration = concentrationMg / concentrationMl;
-            var volume = weightBasedDose / concentration;
-            document.getElementById('result_dose').textContent = 'Hesaplanan Doz: ' + weightBasedDose.toFixed(2) + ' mg';
-            document.getElementById('result_volume').textContent = 'Hesaplanan Hacim: ' + volume.toFixed(2) + ' ml';
-        }
+    var weight = parseFloat(document.getElementById('weight').value);
+    var weightUnit = document.getElementById('weight_unit').value;
+    var dosePerKg = parseFloat(document.getElementById('dose_per_kg').value);
+    var concentrationMg = parseFloat(document.getElementById('concentration_mg').value);
+    var concentrationMl = parseFloat(document.getElementById('concentration_ml').value);
+
+    if (weightUnit === 'gram') {
+        weight /= 1000.0;
+    }
+
+    var weightBasedDose = weight * dosePerKg;
+    var concentration = concentrationMg / concentrationMl;
+    var volume = weightBasedDose / concentration;
+
+    document.getElementById('result_dose').textContent = 'Hesaplanan Doz: ' + weightBasedDose.toFixed(2) + ' mg';
+    document.getElementById('result_volume').textContent = 'Hesaplanan Hacim: ' + volume.toFixed(2) + ' ml';
+}
     </script>
 </head>
 <body>
